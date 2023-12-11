@@ -1,8 +1,7 @@
 defmodule Day11 do
   def parse(input) do
     for {line, y} <- Enum.with_index(String.split(input, "\n", trim: true)),
-        {cell, x} <- Enum.with_index(to_charlist(line)),
-        cell == ?# do
+        {?#, x} <- Enum.with_index(to_charlist(line)) do
       {x, y}
     end
   end
