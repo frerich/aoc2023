@@ -7,21 +7,11 @@ defmodule Day11 do
     end
   end
 
-  def part_one(image) do
+  def solve(image, expand_factor) do
     image
-    |> expand(2)
+    |> expand(expand_factor)
     |> transpose()
-    |> expand(2)
-    |> pairs()
-    |> Enum.map(fn {{x0, y0}, {x1, y1}} -> abs(x0 - x1) + abs(y0 - y1) end)
-    |> Enum.sum()
-  end
-
-  def part_two(image) do
-    image
-    |> expand(1_000_000)
-    |> transpose()
-    |> expand(1_000_000)
+    |> expand(expand_factor)
     |> pairs()
     |> Enum.map(fn {{x0, y0}, {x1, y1}} -> abs(x0 - x1) + abs(y0 - y1) end)
     |> Enum.sum()
@@ -59,5 +49,5 @@ defmodule Day11 do
 end
 
 input = Day11.parse(File.read!("input.txt"))
-IO.inspect(Day11.part_one(input))
-IO.inspect(Day11.part_two(input))
+IO.inspect(Day11.solve(input, 2))
+IO.inspect(Day11.solve(input, 1_000_000))
